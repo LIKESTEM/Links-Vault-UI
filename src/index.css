@@ -1,0 +1,151 @@
+:root {
+  /* Purple Raindrops palette — https://coolors.co/f72585-b5179e-7209b7-560bad-480ca8-3a0ca3-3f37c9-4361ee-4895ef-4cc9f0 */
+  --grad-pink: #f72585;
+  --grad-plum: #b5179e;
+  --grad-indigo: #7209b7;
+  --grad-ultrasonic: #560bad;
+  --grad-azure: #480ca8;
+  --grad-royal: #3a0ca3;
+  --grad-bright-indigo: #3f37c9;
+  --grad-sapphire: #4361ee;
+  --grad-blue: #4895ef;
+  --grad-aqua: #4cc9f0;
+
+  --gradient-primary: linear-gradient(120deg, var(--grad-pink), var(--grad-indigo) 55%, var(--grad-sapphire));
+  --gradient-danger: linear-gradient(120deg, var(--grad-pink), var(--grad-plum));
+  --gradient-border: linear-gradient(
+    90deg,
+    var(--grad-pink),
+    var(--grad-indigo),
+    var(--grad-sapphire),
+    var(--grad-aqua)
+  );
+
+  --color-bg: #f8f7fc;
+  --color-glow-pink: rgba(247, 37, 133, 0.08);
+  --color-glow-blue: rgba(67, 97, 238, 0.08);
+  --color-surface: #ffffff;
+  --color-surface-alt: #f2f0fa;
+  --color-border: rgba(114, 9, 183, 0.14);
+  --color-border-strong: rgba(114, 9, 183, 0.28);
+  --color-text: #1a1523;
+  --color-text-muted: #6b6478;
+  --color-label: var(--grad-indigo);
+  --color-primary: var(--grad-sapphire);
+  --color-primary-hover: var(--grad-bright-indigo);
+  --color-primary-soft: rgba(67, 97, 238, 0.1);
+  --color-accent: var(--grad-sapphire);
+  --color-danger: var(--grad-pink);
+  --color-danger-hover: var(--grad-plum);
+  --color-danger-soft: rgba(247, 37, 133, 0.1);
+  --color-success: #17a374;
+  --color-success-soft: rgba(23, 163, 116, 0.12);
+
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  --radius-md: 16px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+
+  --shadow-card: 0 4px 16px rgba(30, 20, 60, 0.06);
+  --shadow-modal: 0 30px 80px rgba(30, 20, 60, 0.25);
+  --shadow-glow-primary: 0 8px 20px rgba(67, 97, 238, 0.25);
+  --shadow-glow-danger: 0 8px 20px rgba(247, 37, 133, 0.25);
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+
+  --content-width: min(1200px, 92vw);
+
+  /* breakpoint reference (used inside each module's own @media rules) */
+  --bp-xs: 320px;
+  --bp-sm: 480px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1200px;
+
+  color-scheme: light;
+  color: var(--color-text);
+  background: var(--color-bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+#root {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+#root::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(900px circle at 8% 0%, var(--color-glow-pink), transparent 60%),
+    radial-gradient(900px circle at 100% 0%, var(--color-glow-blue), transparent 55%);
+}
+
+#root::after {
+  content: '';
+  position: fixed;
+  right: -12%;
+  bottom: -18%;
+  width: 640px;
+  height: 640px;
+  max-width: 90vw;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  z-index: -1;
+  pointer-events: none;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  font-family: inherit;
+}
+
+input,
+textarea {
+  font-family: inherit;
+}
+
+a {
+  color: var(--color-accent);
+}
