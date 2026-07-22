@@ -62,6 +62,8 @@ export default function App() {
         <LinkList
           links={visibleLinks}
           hasAnyLinks={links.length > 0}
+          selectedTag={selectedTag}
+          onSelectTag={setSelectedTag}
           onEdit={(link) => setFormState({ mode: 'edit', link })}
           onDelete={handleDelete}
         />

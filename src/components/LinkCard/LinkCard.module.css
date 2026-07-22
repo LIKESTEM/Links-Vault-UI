@@ -1,106 +1,157 @@
-.card {
+.row {
   position: relative;
+  list-style: none;
   display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-  padding: var(--space-lg);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-card);
-  overflow: hidden;
-  transition: box-shadow 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  border-top: 1px solid var(--color-border);
+  transition: background-color 0.15s ease;
 }
 
-.card::before {
-  content: '';
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 3px;
-  background: var(--gradient-border);
-  opacity: 0.55;
-  transition: opacity 0.15s ease;
+.row:hover {
+  background: var(--color-surface-alt);
 }
 
-.card:hover {
-  border-color: var(--color-border-strong);
-  box-shadow: 0 16px 36px rgba(30, 20, 60, 0.14);
-  transform: translateY(-2px);
-}
-
-.card:hover::before {
+.row:hover .rowActions {
   opacity: 1;
+  pointer-events: auto;
 }
 
-.header {
+.rowLink {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex: 1 1 auto;
+  min-width: 0;
+  text-decoration: none;
+  color: inherit;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--tag-color) 18%, white);
+  color: var(--tag-color);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.rowText {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  min-width: 0;
 }
 
-.title {
-  font-family: var(--font-heading);
-  font-size: 19px;
-  font-weight: 700;
+.rowTitle {
+  font-size: 14.5px;
+  font-weight: 600;
   color: var(--color-text);
-  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.title:hover {
+.rowLink:hover .rowTitle {
   color: var(--color-accent);
 }
 
-.host {
-  font-size: 13px;
-  color: var(--color-accent);
-  text-decoration: none;
-}
-
-.host:hover {
-  color: var(--color-accent);
-  text-decoration: underline;
-}
-
-.description {
-  font-size: 14px;
+.rowUrl {
+  font-size: 12.5px;
   color: var(--color-text-muted);
-  line-height: 1.5;
-  overflow-wrap: anywhere;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .tags {
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   gap: var(--space-sm);
   list-style: none;
   padding: 0;
   margin: 0;
+  flex-shrink: 0;
+  max-width: 240px;
+}
+
+@media (min-width: 768px) {
+  .tags {
+    display: flex;
+  }
 }
 
 .tag {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
-  padding: 5px 12px;
+  padding: 4px 10px;
   border-radius: var(--radius-pill);
-  border: 1px solid transparent;
   color: var(--tag-color);
   background: color-mix(in srgb, var(--tag-color) 16%, white);
+  white-space: nowrap;
 }
 
 .tagDot {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   background: currentColor;
   flex-shrink: 0;
 }
 
-.actions {
+.rowActions {
   display: flex;
-  gap: var(--space-sm);
-  margin-top: auto;
-  padding-top: var(--space-sm);
+  gap: 6px;
+  flex-shrink: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+@media (max-width: 767px) {
+  .rowActions {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.iconButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.iconButton svg {
+  width: 16px;
+  height: 16px;
+}
+
+.iconButton:hover {
+  background: var(--color-primary-soft);
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.iconButton[data-variant='danger']:hover {
+  background: var(--color-danger-soft);
+  color: var(--grad-pink);
+  border-color: var(--grad-pink);
 }

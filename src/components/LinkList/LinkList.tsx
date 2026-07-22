@@ -1,24 +1,38 @@
-import { useState } from 'react';
+import { useState, type CSSProperties } from 'react';
 import type { Link } from '../../types/link';
 import { LinkCard } from '../LinkCard/LinkCard';
 import { EmptyState } from '../EmptyState/EmptyState';
 import { Modal } from '../Modal/Modal';
 import { Button } from '../Inputs/Button';
+import { groupLinksByTag } from '../../utils/groupLinks';
+import { formatRelativeTime } from '../../utils/formatRelativeTime';
+import { getTagColor } from '../../utils/tagColor';
 import styles from './LinkList.module.css';
 
 interface LinkListProps {
   links: Link[];
   hasAnyLinks: boolean;
+  selectedTag: string | null;
+  onSelectTag: (tag: string | null) => void;
   onEdit: (link: Link) => void;
   onDelete: (id: string) => void;
 }
 
-export function LinkList({ links, hasAnyLinks, onEdit, onDelete }: LinkListProps) {
+export function LinkList({
+  links,
+  hasAnyLinks,
+  selectedTag,
+  onSelectTag,
+  onEdit,
+  onDelete,
+}: LinkListProps) {
   const [pendingDelete, setPendingDelete] = useState<Link | null>(null);
 
   if (links.length === 0) {
     return <EmptyState hasLinks={hasAnyLinks} />;
   }
+
+  const groups = groupLinksByTag(links, selectedTag);
 
   function confirmDelete() {
     if (pendingDelete) {
@@ -29,15 +43,51 @@ export function LinkList({ links, hasAnyLinks, onEdit, onDelete }: LinkListProps
 
   return (
     <>
-      <div className={styles.grid}>
-        {links.map((link) => (
-          <LinkCard
-            key={link.id}
-            link={link}
-            onEdit={onEdit}
-            onRequestDelete={setPendingDelete}
-          />
-        ))}
+      <div className={styles.groupList}>
+        {groups.map((group) => {
+          const meta = `${group.links.length} link${group.links.length === 1 ? '' : 's'} · ${formatRelativeTime(group.links[0].createdAt)}`;
+          const headerContent = (
+            <>
+              <span className={styles.groupTitle}>
+                {group.isUntagged ? group.tag : `'${group.tag}'`}
+              </span>
+              <span className={styles.groupMeta}>{meta}</span>
+            </>
+          );
+
+          return (
+            <section key={group.tag} className={styles.group}>
+              {group.isUntagged ? (
+                <div className={styles.groupHeader}>{headerContent}</div>
+              ) : (
+                <button
+                  type="button"
+                  className={styles.groupHeader}
+                  style={{ '--tag-color': getTagColor(group.tag) } as CSSProperties}
+                  aria-label={
+                    selectedTag === group.tag
+                      ? `Clear filter for '${group.tag}'`
+                      : `Filter by '${group.tag}'`
+                  }
+                  onClick={() => onSelectTag(selectedTag === group.tag ? null : group.tag)}
+                >
+                  {headerContent}
+                </button>
+              )}
+
+              <ul className={styles.rows}>
+                {group.links.map((link) => (
+                  <LinkCard
+                    key={link.id}
+                    link={link}
+                    onEdit={onEdit}
+                    onRequestDelete={setPendingDelete}
+                  />
+                ))}
+              </ul>
+            </section>
+          );
+        })}
       </div>
 
       <Modal isOpen={pendingDelete !== null} onClose={() => setPendingDelete(null)} title="Delete Link">
