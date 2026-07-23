@@ -16,6 +16,7 @@ interface LinkListProps {
   onSelectTag: (tag: string | null) => void;
   onEdit: (link: Link) => void;
   onDelete: (id: string) => void;
+  onAddLink: () => void;
 }
 
 export function LinkList({
@@ -25,11 +26,12 @@ export function LinkList({
   onSelectTag,
   onEdit,
   onDelete,
+  onAddLink,
 }: LinkListProps) {
   const [pendingDelete, setPendingDelete] = useState<Link | null>(null);
 
   if (links.length === 0) {
-    return <EmptyState hasLinks={hasAnyLinks} />;
+    return <EmptyState hasLinks={hasAnyLinks} onAddLink={onAddLink} />;
   }
 
   const groups = groupLinksByTag(links, selectedTag);

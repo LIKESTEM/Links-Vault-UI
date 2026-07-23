@@ -66,6 +66,7 @@ export default function App() {
           onSelectTag={setSelectedTag}
           onEdit={(link) => setFormState({ mode: 'edit', link })}
           onDelete={handleDelete}
+          onAddLink={() => setFormState({ mode: 'create' })}
         />
       </main>
 

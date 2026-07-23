@@ -1,10 +1,12 @@
+import { Button } from '../Inputs/Button';
 import styles from './EmptyState.module.css';
 
 interface EmptyStateProps {
   hasLinks: boolean;
+  onAddLink: () => void;
 }
 
-export function EmptyState({ hasLinks }: EmptyStateProps) {
+export function EmptyState({ hasLinks, onAddLink }: EmptyStateProps) {
   return (
     <div className={styles.shell}>
       <span className={styles.icon} aria-hidden="true">
@@ -36,6 +38,11 @@ export function EmptyState({ hasLinks }: EmptyStateProps) {
           ? 'Try a different search term or clear the tag filter.'
           : 'Click "Add link" to save your first bookmark.'}
       </p>
+      {!hasLinks && (
+        <Button variant="primary" onClick={onAddLink}>
+          + Add Link
+        </Button>
+      )}
     </div>
   );
 }
