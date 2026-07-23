@@ -14,14 +14,14 @@
   overflow: hidden;
 }
 
-.group::before {
+/* .group::before {
   content: '';
   position: absolute;
   inset: 0 0 auto 0;
   height: 3px;
   background: var(--gradient-border);
   opacity: 0.55;
-}
+} */
 
 .groupHeader {
   width: 100%;
