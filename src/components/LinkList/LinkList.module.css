@@ -79,8 +79,8 @@ button.groupHeader:focus-visible {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border: 1px solid var(--grad-pink);
-  color: var(--grad-pink);
+  border: 1px solid var(--grad-danger);
+  color: var(--grad-danger);
   background: var(--color-danger-soft);
   margin-bottom: var(--space-md);
 }

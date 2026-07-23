@@ -1,18 +1,20 @@
 :root {
   /* Purple Raindrops palette — https://coolors.co/f72585-b5179e-7209b7-560bad-480ca8-3a0ca3-3f37c9-4361ee-4895ef-4cc9f0 */
-  --grad-pink: #f72585;
+  --grad-pink: #e476a8;
   --grad-plum: #b5179e;
-  --grad-indigo: #7209b7;
+  --grad-indigo: #7a449e;
   --grad-ultrasonic: #560bad;
   --grad-azure: #480ca8;
   --grad-royal: #3a0ca3;
   --grad-bright-indigo: #3f37c9;
-  --grad-sapphire: #4361ee;
+  --grad-sapphire: #a4a8be;
   --grad-blue: #4895ef;
   --grad-aqua: #4cc9f0;
+  --grad-danger: rgb(255, 0, 0);
+  /* --grad-denger-ext:  */
 
   --gradient-primary: linear-gradient(120deg, var(--grad-pink), var(--grad-indigo) 55%, var(--grad-sapphire));
-  --gradient-danger: linear-gradient(120deg, var(--grad-pink), var(--grad-plum));
+  --gradient-danger: var(--grad-danger);
   --gradient-border: linear-gradient(
     90deg,
     var(--grad-pink),
