@@ -34,7 +34,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: var(--tag-color, var(--color-text));
+  color: #000;
 }
 
 .dot {
@@ -93,5 +93,5 @@
 
 .optionActive {
   background: color-mix(in srgb, var(--tag-color, var(--color-accent)) 14%, var(--color-surface-alt));
-  color: var(--tag-color, var(--color-text));
+  color: #000;
 }

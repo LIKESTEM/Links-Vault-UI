@@ -139,7 +139,7 @@
   padding: 6px 8px 6px 14px;
   border-radius: var(--radius-pill);
   background: color-mix(in srgb, var(--tag-color) 16%, white);
-  color: var(--tag-color);
+  color: #000;
   font-size: 13px;
   font-weight: 700;
 }

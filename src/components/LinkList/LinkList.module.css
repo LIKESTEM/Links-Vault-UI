@@ -58,7 +58,7 @@ button.groupHeader:focus-visible {
   font-family: var(--font-heading);
   font-size: 17px;
   font-weight: 700;
-  color: var(--tag-color, var(--color-text));
+  color: #000;
 }
 
 .groupMeta {

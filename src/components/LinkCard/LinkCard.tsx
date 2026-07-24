@@ -40,6 +40,7 @@ export function LinkCard({ link, onEdit, onRequestDelete }: LinkCardProps) {
         <span className={styles.rowText}>
           <span className={styles.rowTitle}>{link.title}</span>
           <span className={styles.rowUrl}>{link.url}</span>
+          {link.description && <span className={styles.rowDescription}>{link.description}</span>}
         </span>
       </a>
 
