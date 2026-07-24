@@ -3,9 +3,6 @@
   flex-direction: column;
   gap: var(--space-md);
   padding: var(--space-lg) 0;
-  position: sticky;
-  z-index: 1000;
-  top: 0;
 }
 
 @media (min-width: 768px) {
