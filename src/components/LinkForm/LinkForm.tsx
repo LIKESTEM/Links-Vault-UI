@@ -28,12 +28,35 @@ export function LinkForm({ mode, initialLink, onSubmit, onCancel }: LinkFormProp
   const [tags, setTags] = useState<string[]>(initialLink?.tags ?? []);
   const [errors, setErrors] = useState<{ title?: string; url?: string }>({});
 
+  function isValidUrl(value: string): boolean {
+    try {
+      const parsed = new URL(value);
+      // Only allow http/https, and require an actual domain with a dot
+      // (blocks things like "https://asdf" or "https://localhost" if you want strict domains)
+      return (
+        (parsed.protocol === 'http:' || parsed.protocol === 'https:') &&
+        parsed.hostname.includes('.')
+      );
+    } catch {
+      return false;
+    }
+  }
+
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
 
     const nextErrors: { title?: string; url?: string } = {};
     if (!title.trim()) nextErrors.title = 'Title is required';
-    if (!url.trim()) nextErrors.url = 'URL is required';
+
+    const trimmedUrl = url.trim();
+    if (!trimmedUrl) {
+      nextErrors.url = 'URL is required';
+    } else {
+      const normalized = normalizeUrl(trimmedUrl);
+      if (!isValidUrl(normalized)) {
+        nextErrors.url = 'Please enter a valid URL';
+      }
+    }
 
     if (Object.keys(nextErrors).length > 0) {
       setErrors(nextErrors);
@@ -42,7 +65,7 @@ export function LinkForm({ mode, initialLink, onSubmit, onCancel }: LinkFormProp
 
     onSubmit({
       title: title.trim(),
-      url: normalizeUrl(url),
+      url: normalizeUrl(trimmedUrl),
       description: description.trim(),
       tags,
     });
