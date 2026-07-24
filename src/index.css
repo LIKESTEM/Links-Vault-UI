@@ -11,9 +11,10 @@
   --grad-blue: #4895ef;
   --grad-aqua: #4cc9f0;
   --grad-danger: rgb(255, 0, 0);
+  --grad-primary-black: rgb(14, 14, 14);
   /* --grad-denger-ext:  */
 
-  --gradient-primary: linear-gradient(120deg, var(--grad-pink), var(--grad-indigo) 55%, var(--grad-sapphire));
+  --gradient-primary: var(--grad-primary-black);
   --gradient-danger: var(--grad-danger);
   --gradient-border: linear-gradient(
     90deg,
@@ -50,7 +51,7 @@
   --radius-sm: 10px;
   --radius-pill: 999px;
 
-  --shadow-card: 0 4px 16px rgba(30, 20, 60, 0.06);
+  --shadow-card: 0 4px 14px rgba(30, 20, 60, 0.20);
   --shadow-modal: 0 30px 80px rgba(30, 20, 60, 0.25);
   --shadow-glow-primary: 0 8px 20px rgba(67, 97, 238, 0.25);
   --shadow-glow-danger: 0 8px 20px rgba(247, 37, 133, 0.25);
