@@ -2,9 +2,12 @@
   border-bottom: 1px solid var(--color-border);
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
-.inner {
+.container {
   width: var(--content-width);
   margin: 0 auto;
   padding: var(--space-lg) 0;
@@ -12,12 +15,14 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-md);
+  flex-wrap: wrap;
 }
 
 .brand {
   display: flex;
   align-items: center;
   gap: var(--space-md);
+  order: 0;
 }
 
 .logo {
@@ -52,16 +57,108 @@
   margin-top: 4px;
 }
 
-@media (max-width: 480px) {
-  .inner {
-    flex-direction: column;
-    align-items: stretch;
-    gap: var(--space-md);
+.addButton {
+  order: 1;
+}
+
+.burger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface);
+  cursor: pointer;
+  order: 2;
+  transition: border-color 0.15s ease;
+}
+
+.burger:hover {
+  border-color: var(--color-accent);
+}
+
+.burger:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.burgerBar,
+.burgerBar::before,
+.burgerBar::after {
+  content: '';
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: transform 0.2s ease, top 0.2s ease, background-color 0.2s ease;
+}
+
+.burgerBar {
+  position: relative;
+}
+
+.burgerBar::before {
+  position: absolute;
+  top: -6px;
+}
+
+.burgerBar::after {
+  position: absolute;
+  top: 6px;
+}
+
+.burgerBarOpen {
+  background: transparent;
+}
+
+.burgerBarOpen::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.burgerBarOpen::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+.toolbarRow {
+  display: none;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-md);
+  width: 100%;
+  order: 3;
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.toolbarRowOpen {
+  display: flex;
+}
+
+@media (min-width: 1024px) {
+  .addButton {
+    order: 2;
   }
 
-  .brand {
-    justify-content: center;
-    text-align: center;
-    flex-direction: column;
+  .burger {
+    display: none;
+  }
+
+  .toolbarRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: auto;
+    order: 1;
+    flex: 1 1 320px;
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
   }
 }

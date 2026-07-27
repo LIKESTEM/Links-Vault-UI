@@ -3,7 +3,6 @@ import { useLinks } from './hooks/useLinks';
 import { filterLinks } from './utils/filterLinks';
 import type { Link } from './types/link';
 import { Header } from './components/Header/Header';
-import { Toolbar } from './components/Toolbar/Toolbar';
 import { LinkList } from './components/LinkList/LinkList';
 import { Modal } from './components/Modal/Modal';
 import { LinkForm } from './components/LinkForm/LinkForm';
@@ -48,17 +47,18 @@ export default function App() {
 
   return (
     <div className="app">
-      <Header onAddLink={() => setFormState({ mode: 'create' })} />
+      <Header
+        onAddLink={() => setFormState({ mode: 'create' })}
+        links={links}
+        query={query}
+        onQueryChange={setQuery}
+        selectedTag={selectedTag}
+        onSelectTag={setSelectedTag}
+      />
+
+      <br/>
 
       <main className="app-main">
-        <Toolbar
-          links={links}
-          query={query}
-          onQueryChange={setQuery}
-          selectedTag={selectedTag}
-          onSelectTag={setSelectedTag}
-        />
-
         <LinkList
           links={visibleLinks}
           hasAnyLinks={links.length > 0}
